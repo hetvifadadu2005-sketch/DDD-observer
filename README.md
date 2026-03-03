@@ -24,13 +24,25 @@
 | -- **Entities** --              | Model things with identity and lifecycle (Table, Order) that enforce their own invariants             |
 | -- **Parse, Don't Validate** -- | Transform raw input into guaranteed-valid types at the boundary, then trust the types everywhere else |
 
-## Project Structure
+## NEW project Structure following DDD best practices
 
 ```
-ex-01/
-  index.ts                      # CLI runner -- runs functions here
+  src/
+  ├── domain/
+  │   ├── product/
+  │   │   ├── types.ts       # ProductName, ProductId, PriceNumber, StockLevel, Quantity
+  │   │   ├── product.ts     # Product entity type
+  │   │   └── factories.ts   # createPrice, createQuantity, createStockLevel,
+  │   │                      # createProduct, reduceStock
+  │   └── events/
+  │       └── events.ts      # all domain event types + DomainEvent
+  ├── infrastructure/
+  │   └── observers/
+  │       ├── observer.ts    # Observer type + observers array
+  │       ├── email.ts       # sendEmailMock
+  │       └── database.ts    # saveToDatabaseMock
+  └── index.ts               # wiring + test runs only
 ```
-
 
 ### Getting Started
 
