@@ -12,16 +12,45 @@ import { v4 as uuidv4 } from "uuid"
 // OOP
 // a constructor function creates a new object and sets its properties
 
-// create a primitive obsessed type
+type Module = {
+	id: string
+	title: string
+	status: string
+}
+
+type Course = {
+	id: string
+	title: string
+	modules: Module[]
+	completed: boolean
+}
 
 // modify this code for testing !!
 // this replicates user input
-const orderOne = {
-	id: uuidv4(), // generate a unique id for the order
-	name: "order one",
-	price: -100,
-	quantity: 200000000,
-	total: 456465465465465400,
+const module1: Module = {
+  id: uuidv4(), // generate a unique id for the order
+  title: "Introduction",
+  status: "passed",
 }
 
-console.log(orderOne)
+const module2 : Module = {
+  id: uuidv4(), // generate a unique id for the order
+  title: "Intermediate",
+  status: "passed",
+}
+
+const course1: Course = {
+  id: uuidv4(), // generate a unique id for the order
+  title: "TypeScript",
+  modules: [module1, module2],
+  completed: false,
+}
+function evaluateCompletion(courses: Course): void {
+	const pass = course1.modules.every(m => m.status === "passed")
+	if (pass) {
+		courses.completed = true
+	} 
+}
+evaluateCompletion(course1)
+
+console.log(course1)
