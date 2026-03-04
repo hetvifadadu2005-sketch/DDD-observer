@@ -27,9 +27,10 @@ function createPrice(cost: number): Price {
 }
 
 function createQuantity(quantity: number): quantity {
-	if (quantity > 100) throw new Error("You cannot order this many!");
+	if (quantity > 1000) throw new Error("You cannot order this many!");
 	return quantity as quantity;
 }
+
 // create a primitive obsessed type
 
 // modify this code for testing !!
@@ -37,17 +38,17 @@ function createQuantity(quantity: number): quantity {
 const orderOne: Order = {
 	id: uuidv4(), // generate a unique id for the order
 	name: "order one",
-	price: -100,
-	quantity: 200000000,
-	total: 456465465465465400,
+	price: createPrice(-100),
+	quantity: createQuantity(200000000),
+	total: createPrice(456465465465465400),
 }
 
 const orderTwo: Order = {
 	id: uuidv4(),
 	name: "order two",
-	price: 100,
-	quantity: 5,
-	total: 500
+	price: createPrice(100),
+	quantity: createQuantity(5),
+	total: createPrice(500)
 }
 
 console.log(orderOne, orderTwo)
