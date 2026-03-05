@@ -1,3 +1,46 @@
+type Project = {
+  clientName: string;
+  clientEmail: string;
+  price: number;
+  immersive: boolean;
+};
+
+const project1: Project = {
+    clientName: "Yann",
+    clientEmail: "yan@mail.com",
+    price: 1000,
+    immersive: true,
+}
+
+const project2: Project = {
+    clientName: "Ilias",
+    clientEmail: "ilias@mail.com",
+    price: 2000,
+    immersive: true,
+}
+
+
+function calculateTotalRevenue(projects: Project[]): number {
+    return projects.reduce((total, project) => total + project.price, 0);
+}
+
+
+
+const project3: Project = {
+    clientName: "Karan",
+    clientEmail: "karan.,.fihei.com",
+    price: 3000,
+    immersive: false,
+}
+
+
+
+
+
+
+
+
+
 // import type {
 //   EurCents,
 //   PerformanceBudgetMB,
@@ -125,11 +168,5 @@
 //       });
 //     }
 //   }
-// }
+// }    
 
-type Project = {
-  clientName: string;
-  clientEmail: string;
-  price: number;
-  immersive: boolean;
-};
