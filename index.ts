@@ -55,11 +55,16 @@ const project2: Project = {
 
 // modify this code for testing !!
 // this replicates user input
-const project3: Project = {
-  clientName: "Karan",
-  clientEmail: createEmail("karanihei.com"),
-  price: createPrice(-3000),
-  immersive: true,
-};
 
-console.log(project3);
+try {
+  const project3: Project = {
+    clientName: "Karan",
+    clientEmail: createEmail("karanihei.com"),
+    price: createPrice(-3000),
+    immersive: true,
+  };
+
+  console.log(project3);
+} catch (error) {
+  console.error("Error creating project3:", (error as Error).message);
+}
