@@ -1,18 +1,35 @@
-import { v4 as uuidv4 } from "uuid"
 import { createModule } from "./domain/module/factory"
-import { createCourse, evaluateCompletion } from "./domain/course/factory"
+import {completeModInCourse, createCourse, subscribe} from "./domain/course/factory"
+import { createStudent } from "./domain/student/factory"
+import { createCertificate } from "./infrastructure/observers/certificate"
+import { createGamification } from "./infrastructure/observers/gamification"
 
+const module1 = createModule("Introduction to Contracts", "pending", 20)
+const module2 = createModule("Offer and Acceptance", "pending", 30)
+const module3 = createModule("Remedies", "pending", 50)
 
-// modify this code for testing !!
-// this replicates user input
-const module1 = createModule("Introduction", "passed", 30)
+let course = createCourse("Contract Law Basics", [module1, module2, module3])
 
+let student = createStudent()
 
-const module2 = createModule("Intermediate", "passed", 40)
+const certificateObserver = createCertificate()
 
-const course1 = createCourse("TypeScript", [module1, module2])
+const gamificationObserver = createGamification({
+  getStudent: () => student,
+  setStudent: (updatedStudent) => {
+    student = updatedStudent
+  },
+  xpPerCourse: 100,
+})
 
-evaluateCompletion(course1)
+course = subscribe(course, certificateObserver)
+course = subscribe(course, gamificationObserver)
 
+course = completeModInCourse(course, module1.id)
+course = completeModInCourse(course, module2.id)
+course = completeModInCourse(course, module3.id)
 
-console.log(course1)
+console.log("Course completed:", course.completed)
+console.log("Student XP:", student.xp)
+console.log("Student rank:", student.rank)
+console.log("Rewarded courses:", student.rewardedCourseId)

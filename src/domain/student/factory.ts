@@ -54,7 +54,7 @@ export function addXp(student: Student, earned: number): Student {
 }
 
 export function hasBeenRewarded(student: Student, courseId: CourseId): boolean {
-  return student.rewardedCourseIds.includes(courseId)
+  return student.rewardedCourseId.includes(courseId)
 }
 
 export function markCourseRewarded(student: Student, courseId: CourseId): Student {

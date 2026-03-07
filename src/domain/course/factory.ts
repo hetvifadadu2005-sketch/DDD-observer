@@ -2,7 +2,7 @@ import { Course } from "./course"
 import { Module } from "../module/module"
 import { CourseId, CourseTitle } from "./types"
 import { v4 as uuidv4 } from "uuid"
-import { passModule } from "../module/factories"
+import { passModule } from "../module/factory"
 import { Observer, DomainEvent } from "../events/events"
 
 function makeId(id?: string): CourseId {
@@ -69,7 +69,7 @@ function notify(course: Course, event: DomainEvent): void {
   course.observers.forEach(observer => observer(event))
 }
 
-function completeModInCourse(course: Course, modId: string): Course{
+export function completeModInCourse(course: Course, modId: string): Course{
     let found = false
     let passModTit = ""
     const updateModules = course.modules.map((module) => {
