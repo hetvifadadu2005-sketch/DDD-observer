@@ -1,4 +1,4 @@
-export type Brand<K, T> = K & { __brand: T }
+export type Brand<K, T> = K & { readonly __brand: T }
 
 export type ModuleId = Brand<string, "mID">
 
