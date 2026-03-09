@@ -8,9 +8,9 @@ import {
   isWithinVisitWindow,
   makeAge,
   makeRoomNumber,
-} from "./patient"
+} from "./src/domain/patient.js"
 
-import { logger, frontDeskNotifier, emailNotifier } from "./observers"
+import { logger, frontDeskNotifier, emailNotifier } from "./src/infrastructure/observers/observers.js"
 
 // ============================================================
 // PHASE 2 — Dumb plain object (primitive obsessed)

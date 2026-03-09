@@ -1,4 +1,4 @@
-import { PatientEvent } from "./patient"
+import { PatientEvent } from "../../domain/patient.js"
 
 export const logger = (e: PatientEvent): void => {
   console.log("LOG:", e)
