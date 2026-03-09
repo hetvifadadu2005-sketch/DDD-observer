@@ -1,15 +1,9 @@
-# E-Commerce: Inventory & Stock Management
+*Key business rules to document:*
 
-This is a classic "reactive" system. The domain doesn't care how a notification is sent;
-it only cares that the stock level has changed.
-
-## The Entity: Product
-
-The Business Rule: A product's StockLevel must never drop below zero. If an order exceeds available stock, throw an exception.
-
-The State Change: Product.ReduceStock(quantity)
-
-## Observer Opportunities
-
-- Low Stock Observer: If stock falls below 5, trigger a "Reorder" process.
-- Out of Stock Observer: If stock hits 0, update the website to mark the item as "Unavailable."
+- Accounts must have unique IDs
+- Balances cannot be negative
+- Checking minimum: $0
+- Savings minimum: $100
+- Investment minimum: $1,000
+- Transaction amounts must be positive
+- Cannot transfer to the same account
