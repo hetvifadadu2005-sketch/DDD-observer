@@ -17,84 +17,65 @@ import { v4 as uuidv4 } from "uuid";
 // modify this code for testing !!
 // this replicates user input
 
+
+// Wiring + test run only
+
+import {
+    AccountId,
+    AccountName,
+    Balance,
+    DailyLimit,
+    PositiveAmount,
+} from "./src/domain/bank/types.js";
+
+import { BankAccount } from "./src/domain/bank/bank.js";
+
+
+import {createAccountId, createAccountName, createBankAccount, createBalance, createDailyLimit, createPositiveAmount} from "./src/domain/bank/factories.js";
+
+import { withdraw } from "./src/domain/bank/operations.js";
+import { registerObserver, emit } from "./src/infrastructure/observers/observer.js"
+
+import { smsObserver } from "./src/infrastructure/observers/sms.js"
+import { auditObserver } from "./src/infrastructure/observers/audit.js"
+
+// Register observers
+registerObserver(smsObserver)
+registerObserver(auditObserver)
+
+// create and withdraw from account
+// Create account
+// const account = createBankAccount(createAccountId("acc-1"), createAccountName("John Doe"), createBalance(10000), createDailyLimit(12000))
+
+// using try catch to handle errors from smart constructors and operations
 try {
-  const orderOne = {
-    id: uuidv4(), // generate a unique id for the order
-    name: "order one",
-    price: createPrice(-100),
-    quantity: createQuantity(200000000),
-    total: createTotal(
-      () => createPrice(-100),
-      () => createQuantity(200000000),
-      456465465465465400,
-    ), // example 1
-    //total: createTotal(price, quantity, 456465465465465400),  // example 2 - this will throw an error because price and quantity are not defined yet
-  };
-  console.log(orderOne);
+  // Create account with invalid name
+  const account = createBankAccount(createAccountId("acc-1"), createAccountName("John Doe"), createBalance(10000), createDailyLimit(8000))
+
+// using try catch to handle errors from smart constructors and operations
+  // Withdraw from account
+  const { account: updated, events } = withdraw(account, createPositiveAmount(6000))
+  // Emit events
+  emit(events)
+
+  console.log("Updated account:", updated)
+
 } catch (error) {
   if (error instanceof Error) {
-    console.error(error.message);
-  } else {
-    console.error("Unknown error");
+	console.error(" ❌ Error creating account:", error.message)
+  }
+  else {
+	console.error(" ❌ Unknown error ", error)
   }
 }
-// Creating the Brand Type
-type Price = number & { readonly __brand: "Price" };
-type Quantity = number & { __brand: "Quantity_Number" };
-type Total = number & { __brand: "Total_Number" };
 
-// Factory functions to create branded types
 
-// Factory function for Price
-function createPrice(amount: number): Price {
-  if (amount < 0) {
-    throw new Error("Price being postive value can't be negative 😔");
-  }
-  if (amount > 10000) {
-    throw new Error(
-      "Price is positve but don't be Greedy. Price exceed the maximum limit we offer 😔",
-    );
-  }
-  return amount as Price;
-}
 
-// Factory function for Quantity
-function createQuantity(value: number): Quantity {
-  if (!Number.isInteger(value)) {
-    throw new Error(
-      "Quantity can not be a fraction or decimal must be a whole number 😔",
-    );
-  }
-  if (value < 0) {
-    throw new Error("Quantity being postive value can't be negative 😔");
-  }
-  if (value > 100) {
-    throw new Error(
-      "Quantity is positve but don't be Greedy. Quantity exceed the maximum limit we have in stock 😔",
-    );
-  }
-  return value as Quantity;
-}
 
-// Factory function for Total
-function createTotal(
-  priceFactory: () => Price,
-  quantityFactory: () => Quantity,
-  total: number,
-): Total {
-  const price = priceFactory();
-  const quantity = quantityFactory();
 
-  const newtotal = price * quantity;
-  if (total !== newtotal) {
-    throw new Error(
-      `Total is not correct. Expected ${newtotal} but got ${total} 😔`,
-    );
-  }
-  if (newtotal > 100000) {
-    throw new Error(
-      "Total is too high. Please reduce the quantity or price 😔",
-    );
-  }
-  return newtotal as Total;
-}
+
+
+
+
+
+

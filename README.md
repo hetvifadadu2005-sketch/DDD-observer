@@ -31,6 +31,26 @@ ex-01/
   index.ts                      # CLI runner -- runs functions here
 ```
 
+```
+src/
+  ├── domain/
+  │   ├── bank/
+  │   │   ├── types.ts        # AccountId, Balance, DailyLimit, PositiveAmount, BankAccount
+  │   │   ├── bank.ts         # withdraw() domain logic (pure function)
+  │   │   └── factories.ts    # createAccountId, createBalance, createDailyLimit,
+  │   │                       # createPositiveAmount, createBankAccount
+  │   └── events/
+  │       └── events.ts       # all domain event types + DomainEvent union
+  ├── infrastructure/
+  │   └── observers/
+  │       ├── observer.ts     # Observer type + observers array + emit() + registerObserver()
+  │       ├── sms.ts          # sendSmsMock (Fraud Detection Observer)
+  │       └── audit.ts        # saveToAuditLogMock (Audit Log Observer)
+  └── index.ts                # wiring + test runs only
+
+```
+
+
 
 ### Getting Started
 
