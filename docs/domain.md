@@ -15,3 +15,4 @@ The State Change: Product.ReduceStock(quantity)
 - Out of Stock Observer: If stock hits 0, update the website to mark the item as "Unavailable."
 - All events are logged to audit trail
 - All events are logged to audit trail
+- All events are logged to audit trail
