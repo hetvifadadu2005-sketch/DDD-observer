@@ -1,30 +1,43 @@
-# 🔍 PR Review – DDD Observer Implementation
+# Repository Feedback
 
-## General Feedback
+## Overview
+Brief summary of the project.
 
-Great work implementing the Domain-Driven Design (DDD) concepts together with the Observer pattern. The project structure is clear and the domain logic is separated from side effects, which aligns well with the design principles described in the assignment.
+## Strengths
+- Good project structure
+- Use of TypeScript
+- Clear separation of logic
 
-The use of domain entities, value objects, and event-based communication helps prevent silent bugs and keeps the architecture clean and maintainable.
+## Areas for Improvement
+- README needs clearer setup instructions
+- Missing error handling in some modules
+- Code comments could be improved
 
----
+## Suggestions
+- Add installation steps
+- Include example inputs/outputs
+- Add tests for domain logic
 
-## ✅ Strengths
+## Overall Assessment
+The repository shows good understanding of the concepts but can be improved with better documentation and structure.# Repository Feedback
 
-•⁠  ⁠Good separation between *domain logic* and *application behavior*
-•⁠  ⁠Proper use of *Domain Events* to trigger observers
-•⁠  ⁠The *Observer pattern* is implemented to decouple side effects from the domain
-•⁠  ⁠Smart constructors ensure that invalid data cannot enter the domain
-•⁠  ⁠The use of *TypeScript types* improves safety and readability
+## Overview
+Brief summary of the project.
 
----
+## Strengths
+- Good project structure
+- Use of TypeScript
+- Clear separation of logic
 
-## 🔎 Logic Checks
+## Areas for Improvement
+- README needs clearer setup instructions
+- Missing error handling in some modules
+- Code comments could be improved
 
-### Branded Types
+## Suggestions
+- Add installation steps
+- Include example inputs/outputs
+- Add tests for domain logic
 
-The project correctly uses branded types to avoid primitive obsession. Using ⁠ unique symbol ⁠ ensures that domain values such as ⁠ PriceNumber ⁠ cannot accidentally be treated as raw numbers.
-
-Example pattern:
-
-```ts
-type PriceNumber = number & { readonly brand: unique symbol }
+## Overall Assessment
+The repository shows good understanding of the concepts but can be improved with better documentation and structure.
