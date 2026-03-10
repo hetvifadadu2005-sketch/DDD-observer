@@ -16,3 +16,4 @@ The State Change: Product.ReduceStock(quantity)
 - All events are logged to audit trail
 - All events are logged to audit trail
 - All events are logged to audit trail
+- All events are logged to audit trail
