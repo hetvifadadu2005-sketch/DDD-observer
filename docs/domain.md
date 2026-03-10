@@ -14,3 +14,4 @@ The State Change: Product.ReduceStock(quantity)
 - Low Stock Observer: If stock falls below 5, trigger a "Reorder" process.
 - Out of Stock Observer: If stock hits 0, update the website to mark the item as "Unavailable."
 - All events are logged to audit trail
+- All events are logged to audit trail
